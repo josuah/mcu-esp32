@@ -1,13 +1,14 @@
 OBJCOPY = xtensa-esp32-elf-objcopy
 OBJDUMP = xtensa-esp32-elf-objdump
+CPP = xtensa-esp32-elf-cpp
 CC = xtensa-esp32-elf-gcc
+AS = xtensa-esp32-elf-as
+LD = xtensa-esp32-elf-ld
 AR = xtensa-esp32-elf-ar
 GDB = xtensa-esp32-elf-gdb
-
-SDK_OBJ = init.o
+SDK_OBJ =
 SDK_CFLAGS = -ffunction-sections -fdata-sections
-SDK_LDFLAGS = -Wl,-Map=firmware.map -Wl,--gc-sections -T${SDK}/script.ld \
-	-nostartfiles -nostdlib -static
+SDK_LDFLAGS = -Map=firmware.map --gc-sections -T${SDK}/script.ld -nostdlib -static
 SDK_CPPFLAGS = -I${SDK}
 SDK_ASFLAGS = -I${SDK}
 
@@ -43,7 +44,7 @@ flash.openocd: firmware.hex
 .S.o:
 
 .c.s:
-	${CC} ${SDK_CPPFLAGS} ${CPPFLAGS} ${SDK_CFLAGS} ${CFLAGS} -c -o $@ $<
+	${CC} ${SDK_CPPFLAGS} ${CPPFLAGS} ${SDK_CFLAGS} ${CFLAGS} -S -o $@ $<
 
 .S.s:
 	${CPP} ${SDK_CPPFLAGS} ${CPPFLAGS} -o $@ $<
