@@ -1,3 +1,11 @@
+/*
+ * This will likely not work, thanks vivonomicon for leading the way:
+ * https://vivonomicon.com/2019/03/30/getting-started-with-bare-metal-esp32-programming/
+ */
+MEMORY {
+	ROM (rx) : ORIGIN = 0x40000000, LENGTH = 32K
+	RAM (rw) : ORIGIN = 0x40070000, LENGTH = 64K
+}
 
 ENTRY(__reset_handler)
 
@@ -8,7 +16,6 @@ SECTIONS {
 		KEEP(*(.data.__vectors))
 		. = ALIGN(4);
 		*(.text .text.*)
-		KEEP(*(.text.interrupt_*))
 		*(.rodata .rodata.*)
 	} > ROM
 
