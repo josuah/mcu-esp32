@@ -6,6 +6,7 @@ MEMORY {
 	ROM (rx) : ORIGIN = 0x40000000, LENGTH = 32K
 	RAM (rw) : ORIGIN = 0x40070000, LENGTH = 64K
 }
+
 ENTRY(__reset_handler)
 
 SECTIONS {
