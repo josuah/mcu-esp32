@@ -1,0 +1,9 @@
+OBJCOPY = xtensa-esp32-elf-objcopy
+OBJDUMP = xtensa-esp32-elf-objdump
+CPP = xtensa-esp32-elf-cpp
+CC = xtensa-esp32-elf-gcc
+AS = xtensa-esp32-elf-as
+LD = xtensa-esp32-elf-ld
+AR = xtensa-esp32-elf-ar
+GDB = xtensa-esp32-elf-gdb
+SDK_OBJ =

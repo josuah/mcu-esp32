@@ -1,5 +1,5 @@
 /*
- * This will likely not work, thanks vivonomicon for leading the way:
+ * Taken (but not adapted yet) from:
  * https://vivonomicon.com/2019/03/30/getting-started-with-bare-metal-esp32-programming/
  */
 MEMORY {
@@ -11,7 +11,6 @@ ENTRY(__reset_handler)
 
 SECTIONS {
 	.text : {
-		KEEP(*(.data.__bootloader))
 		KEEP(*(.data.__stack_pointer))
 		KEEP(*(.data.__vectors))
 		. = ALIGN(4);

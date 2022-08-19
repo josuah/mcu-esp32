@@ -1,12 +1,5 @@
-OBJCOPY = xtensa-esp32-elf-objcopy
-OBJDUMP = xtensa-esp32-elf-objdump
-CPP = xtensa-esp32-elf-cpp
-CC = xtensa-esp32-elf-gcc
-AS = xtensa-esp32-elf-as
-LD = xtensa-esp32-elf-ld
-AR = xtensa-esp32-elf-ar
-GDB = xtensa-esp32-elf-gdb
-SDK_OBJ =
+include config.mk
+
 SDK_CFLAGS = -ffunction-sections -fdata-sections
 SDK_LDFLAGS = -Map=firmware.map --gc-sections -T${SDK}/script.ld -nostdlib -static
 SDK_CPPFLAGS = -I${SDK}
@@ -41,7 +34,10 @@ firmware.elf: ${SDK_OBJ} ${OBJ}
 .SUFFIXES: .c .s .S .o .elf .bin .asm .hex .uf2
 
 .c.o:
-	${CC} ${SDK_CPPFLAGS} ${CPPFLAGS} ${SDK_CFLAGS} ${CFLAGS} -c -o $@ $<
+.S.o:
+
+.c.s:
+	${CC} ${SDK_CPPFLAGS} ${CPPFLAGS} ${SDK_CFLAGS} ${CFLAGS} -S -o $@ $<
 
 .S.s:
 	${CPP} ${SDK_CPPFLAGS} ${CPPFLAGS} -o $@ $<
